@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To Do List</title>
+  <style>
+  li button {
+    color: red;
+    border-radius: 3px;
+  }
+  </style>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+  <h1>To Do Tasks</h1>
+  <input type="text" id="add-text" class="add-text" placeholder="add a task" value autocomplete="off">
+  <button id="addIt">Add Task</button>
+  <button id="show">Show//Hide Tasks</button>
+  <ul id="tasks" class="tasks">
+  </ul>
+
+  <script>
+  //grab main elements
+    var addText = $("#add-text");
+    var todoItems = $("#tasks");
+    var addIt = $("#addIt");
+  //click the add button
+    addIt.click(addNewTask);
+
+  //click event to add
+    function addNewTask (event) {
+      var delButton = document.createElement("button");
+      var newTask = document.createElement("li");
+        newTask.classList.add("classy");
+        newTask.innerHTML = "<strong>" + addText.value + "</strong>";
+        todoItems.prepend(newTask);
+
+          //click event to delete
+          newTask.appendChild(delButton);
+          delButton.innerHTML = "X";
+          delButton.onclick = delTask;
+
+      
+        addText.value = "";
+
+        addText.focus();
+    };
+
+    function delTask (event) {
+      todoItems.removeChild(event.target.parentElement);
+        };
+    
+
+    function hideItems (event) {
+    
+      $(".classy").slideToggle();
+    };
+  var showIt = $('#show');
+  showIt.onclick = hideItems;
+  </script>
+
+  
+</body>
+</html>
